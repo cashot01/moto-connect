@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres_g
+    environment:
+      - 'POSTGRES_DB=motoconnect'
+      - 'POSTGRES_PASSWORD=motoconnect'
+      - 'POSTGRES_USER=motoconnect'
+    ports:
+      - '5432:5432'

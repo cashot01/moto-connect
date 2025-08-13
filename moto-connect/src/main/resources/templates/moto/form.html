@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dracula">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Moto Connect</title>
+</head>
+<body>
+
+<h1 class="text-2xl font-bold text-primary p-8">Moto Connect</h1>
+
+<main class="grid place-items-center gap-4 p-8">
+    <form class="w-full max-w-md" method="post">
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Modelo</legend>
+            <input name="title" type="text" class="input" placeholder="modelo da moto" />
+            <p class="label">modelo obrigatório</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Placa</legend>
+            <input name="title" type="text" class="input" placeholder="placa moto" />
+            <p class="label">placa obrigatória</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Data Cadastro</legend>
+            <input name="title" type="text" class="input" placeholder="data cadastro moto" />
+            <p class="label">data obrigatória</p>
+        </fieldset>
+
+        <div class="space-x-4">
+            <a href="/task" class="btn btn-neutral">Cancelar</a>
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+
+    </form>
+</main>
+
+<script>
+    document.querySelector("#score-range").addEventListener("input", e => {
+        document.querySelector("#score-label").textContent = e.target.value + " pts"
+    })
+</script>
+
+</body>
+</html>

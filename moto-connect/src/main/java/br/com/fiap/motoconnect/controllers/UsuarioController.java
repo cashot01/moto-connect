@@ -2,8 +2,9 @@ package br.com.fiap.motoconnect.controllers;
 
 import br.com.fiap.motoconnect.models.Usuario;
 import br.com.fiap.motoconnect.services.UsuarioService;
-import ch.qos.logback.core.model.Model;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,8 @@ public class UsuarioController {
     @GetMapping
     public String index(Model model) {
         var usuarios = usuarioService.getAllUsuarios();
-        model.addAtribute("usuarios", usuarios);
-        return "usuarios";
+        model.addAttribute("usuarios", usuarios);
+        return "index";
     }
 
     @GetMapping("/form")

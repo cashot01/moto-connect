@@ -1,4 +1,4 @@
-package br.com.fiap.motoconnect.interfaces;
+package br.com.fiap.motoconnect.repositories;
 
 import br.com.fiap.motoconnect.models.Moto;
 import org.springframework.data.jpa.repository.JpaRepository;

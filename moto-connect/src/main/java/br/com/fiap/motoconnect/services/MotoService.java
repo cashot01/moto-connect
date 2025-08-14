@@ -1,6 +1,6 @@
 package br.com.fiap.motoconnect.services;
 
-import br.com.fiap.motoconnect.interfaces.MotoRepository;
+import br.com.fiap.motoconnect.repositories.MotoRepository;
 import br.com.fiap.motoconnect.models.Moto;
 
 import java.util.List;

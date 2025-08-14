@@ -1,5 +1,6 @@
 package br.com.fiap.motoconnect.services;
 
+import br.com.fiap.motoconnect.repositories.HistoricoMotoRepository;
 import br.com.fiap.motoconnect.models.HistoricoMoto;
 import org.springframework.stereotype.Service;
 

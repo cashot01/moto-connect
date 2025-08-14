@@ -1,6 +1,6 @@
 package br.com.fiap.motoconnect.services;
 
-import br.com.fiap.motoconnect.interfaces.UsuarioRepository;
+import br.com.fiap.motoconnect.repositories.UsuarioRepository;
 import br.com.fiap.motoconnect.models.Usuario;
 import org.springframework.stereotype.Service;
 

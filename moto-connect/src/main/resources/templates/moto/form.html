@@ -13,16 +13,34 @@
 
 <main class="grid place-items-center gap-4 p-8">
     <form class="w-full max-w-md" method="post">
+        
+
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Modelo</legend>
-            <input name="title" type="text" class="input" placeholder="modelo da moto" />
+            <select name="modelo" class="select" required>
+                <option value="">Selecione</option>
+                <option value="POP">POP</option>
+                <option value="E">E</option>
+                <option value="SPORT">SPORT</option>
+            </select>
             <p class="label">modelo obrigatório</p>
         </fieldset>
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Placa</legend>
-            <input name="title" type="text" class="input" placeholder="placa moto" />
+            <input name="title" type="text" class="input" placeholder="digite a placa" />
             <p class="label">placa obrigatória</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Status</legend>
+            <select name="status" class="select" required>
+                <option value="">Selecione</option>
+                <option value="NAO_INICIADO">NAO_INICIADO</option>
+                <option value="MANUTENCAO">MANUTENCAO</option>
+                <option value="REVISADA">REVISADA</option>
+            </select>
+            <p class="label">status obrigatório</p>
         </fieldset>
 
         <fieldset class="fieldset">
@@ -32,7 +50,7 @@
         </fieldset>
 
         <div class="space-x-4">
-            <a href="/task" class="btn btn-neutral">Cancelar</a>
+            <a href="/moto" class="btn btn-neutral">Cancelar</a>
             <button class="btn btn-primary">Salvar</button>
         </div>
 
@@ -40,9 +58,6 @@
 </main>
 
 <script>
-    document.querySelector("#score-range").addEventListener("input", e => {
-        document.querySelector("#score-label").textContent = e.target.value + " pts"
-    })
 </script>
 
 </body>

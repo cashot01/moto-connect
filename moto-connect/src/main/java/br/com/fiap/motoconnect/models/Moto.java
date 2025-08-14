@@ -1,6 +1,7 @@
 package br.com.fiap.motoconnect.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,12 +13,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "tb_moto")
 public class Moto {
 
     @Id
@@ -42,6 +46,10 @@ public class Moto {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tb_rfid", referencedColumnName = "id")
     private Rfid rfid;
+
+    @OneToMany(mappedBy = "moto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<HistoricoMoto> historicos = new ArrayList<>();
 
 
 }

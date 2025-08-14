@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@Table(name = "tb_historico_moto")
+@Table(name = "tb_historico_moto")
 public class HistoricoMoto  {
 
     @Id

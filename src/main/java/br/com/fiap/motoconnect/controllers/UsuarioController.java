@@ -31,15 +31,23 @@ public class UsuarioController {
         return "usuario/index";
     }
 
+    //@GetMapping("/form")
+    //public String form() {
+    //    return "usuario/form";
+    //}
+
     @GetMapping("/form")
-    public String form() {
-        return "usuario/form";
+    public String form(Model model) {
+        model.addAttribute("usuario", new Usuario()); // Adiciona um novo objeto Usuario ao modelo
+        return "usuario/form"; // Retorna o template correto
     }
 
     @PostMapping("/form")
     public String create(@Valid Usuario usuario, BindingResult result, RedirectAttributes redirect ){ //biding
 
-        if(result.hasErrors()) return "form";
+        if (result.hasErrors()) {
+            return "usuario/form"; // Retorna o template correto em caso de erro
+        }
 
         var message = messageSource.getMessage("user.create.success", null, LocaleContextHolder.getLocale());
         usuarioService.save(usuario);

@@ -9,46 +9,50 @@
 </head>
 <body>
 
-<h1 class="text-2xl font-bold text-primary p-8">Moto Connect</h1>
+<h1 class="text-2xl font-bold text-primary p-8">Cadastrar Moto</h1>
 
 <main class="grid place-items-center gap-4 p-8">
-    <form class="w-full max-w-md" method="post">
+    <form class="w-full max-w-md" method="post" th:object="${moto}">
 
-
+        <!-- Modelo -->
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Modelo</legend>
-            <select name="modelo" class="select" required>
+            <select th:field="*{modelo}" class="select" required>
                 <option value="">Selecione</option>
                 <option value="POP">POP</option>
                 <option value="E">E</option>
                 <option value="SPORT">SPORT</option>
             </select>
-            <p class="label">modelo obrigatório</p>
+            <p class="label text-error" th:errors="*{modelo}">modelo obrigatório</p>
         </fieldset>
 
+        <!-- Placa -->
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Placa</legend>
-            <input name="title" type="text" class="input" placeholder="digite a placa" />
-            <p class="label">placa obrigatória</p>
+            <input th:field="*{placa}" type="text" class="input" placeholder="Digite a placa" />
+            <p class="label text-error" th:errors="*{placa}">placa obrigatória</p>
         </fieldset>
 
+        <!-- Status -->
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Status</legend>
-            <select name="status" class="select" required>
+            <select th:field="*{status}" class="select" required>
                 <option value="">Selecione</option>
-                <option value="NAO_INICIADO">NAO_INICIADO</option>
-                <option value="MANUTENCAO">MANUTENCAO</option>
+                <option value="NAO_INICIADO">NÃO INICIADO</option>
+                <option value="MANUTENCAO">EM MANUTENÇÃO</option>
                 <option value="REVISADA">REVISADA</option>
             </select>
-            <p class="label">status obrigatório</p>
+            <p class="label text-error" th:errors="*{status}">status obrigatório</p>
         </fieldset>
 
+        <!-- Data Cadastro -->
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Data Cadastro</legend>
-            <input name="title" type="text" class="input" placeholder="data cadastro moto" />
-            <p class="label">data obrigatória</p>
+            <input th:field="*{dataCadastro}" type="date" class="input" placeholder="Data de cadastro" />
+            <p class="label text-error" th:errors="*{dataCadastro}">data obrigatória</p>
         </fieldset>
 
+        <!-- Botões -->
         <div class="space-x-4">
             <a href="/moto" class="btn btn-neutral">Cancelar</a>
             <button class="btn btn-primary">Salvar</button>
@@ -56,9 +60,6 @@
 
     </form>
 </main>
-
-<script>
-</script>
 
 </body>
 </html>

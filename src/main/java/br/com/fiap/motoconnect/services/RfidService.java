@@ -2,9 +2,11 @@ package br.com.fiap.motoconnect.services;
 
 import br.com.fiap.motoconnect.repositories.RfidRepository;
 import br.com.fiap.motoconnect.models.Rfid;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RfidService {
 
     private final RfidRepository rfidRepository;

@@ -24,12 +24,12 @@ public class UsuarioController {
     public String index(Model model) {
         var usuarios = usuarioService.getAllUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "index";
+        return "usuario/index";
     }
 
     @GetMapping("/form")
     public String form() {
-        return "form";
+        return "usuario/form";
     }
 
     @PostMapping("/form")

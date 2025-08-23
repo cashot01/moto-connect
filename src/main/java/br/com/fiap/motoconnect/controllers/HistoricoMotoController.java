@@ -23,12 +23,12 @@ public class HistoricoMotoController {
     public String index(Model model) {
         var historicoMotos = historicoMotoService.getAllHistoricoMotos();
         model.addAttribute("historicoMotos", historicoMotos);
-        return "index";
+        return "historicoMoto/index";
     }
 
     @GetMapping("/form")
     public String form() {
-        return "form";
+        return "historicoMoto/form";
     }
 
     @PostMapping("/form")

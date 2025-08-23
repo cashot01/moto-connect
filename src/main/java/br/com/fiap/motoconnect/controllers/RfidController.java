@@ -23,12 +23,12 @@ public class RfidController {
     public String index(Model model) {
         var rfids = rfidService.getAllRfids();
         model.addAttribute("rfids", rfids);
-        return "index";
+        return "rfid/index";
     }
 
     @GetMapping("/form")
     public String form() {
-        return "form";
+        return "rfid/form";
     }
 
     @PostMapping("/form")

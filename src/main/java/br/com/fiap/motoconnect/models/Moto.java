@@ -28,19 +28,24 @@ public class Moto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "modelo da moto obrigatório")
+    //@NotNull(message = "modelo da moto obrigatório")
+    @NotNull(message = "{motorcycle.model.notnull}")
     private TipoModelo modelo;
 
-    @NotBlank(message = "placa obrigatória")
-    @Pattern(regexp = "^([A-Z]{3}[0-9][A-Z][0-9]{2}|[A-Z]{3}[0-9]{4})$")
+    //@NotBlank(message = "placa obrigatória")
+    @NotBlank(message = "{motorcycle.plate.notblank}")
+    @Pattern(regexp = "^([A-Z]{3}[0-9][A-Z][0-9]{2}|[A-Z]{3}[0-9]{4})$", message="{motorcycle.plate.regex}")
     private String placa;
 
-    @NotNull(message = "Data obrigatoria")
+    //@NotNull(message = "Data obrigatoria")
+    @NotNull(message = "{motorcycle.date.notnull}")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent(message = "A data de cadastro não pode ser futura")
+    //@PastOrPresent(message = "A data de cadastro não pode ser futura")
+    @PastOrPresent(message = "{motorcycle.createdDate.pastOrPresent}")
     private LocalDate dataCadastro;
 
-    @NotNull(message = "status obrigatorio")
+    //@NotNull(message = "status obrigatorio")
+    @NotNull(message = "{motorcycle.status.notnull}")
     private TipoStatus status;
 
     @OneToOne(cascade = CascadeType.ALL)

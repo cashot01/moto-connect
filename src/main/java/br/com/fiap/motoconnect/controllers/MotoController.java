@@ -50,7 +50,7 @@ public class MotoController {
             return "moto/form"; // Retorna o template correto em caso de erro
         }
 
-        var message = messageSource.getMessage("user.create.success", null, LocaleContextHolder.getLocale());
+        var message = messageSource.getMessage("motorcycle.create.success", null, LocaleContextHolder.getLocale());
         motoService.save(moto);
         //redirect.addFlashAttribute("message", "Moto cadastrado com sucesso");
         redirect.addFlashAttribute("message", message);

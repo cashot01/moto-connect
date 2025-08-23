@@ -9,9 +9,26 @@
 </head>
 <body>
 
-<h1 class="text-2xl font-bold text-primary p-8">Moto Connect</h1>
+<nav class="navbar bg-base-300 shadow-sm">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl">MotoConnect</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <details>
+                    <summary>🌎</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                        <li><a href="?lang=pt_BR">🇧🇷</a></li>
+                        <li><a href="?lang=en_US">🏴󠁧󠁢󠁥󠁮󠁧󠁿</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<a href="/moto/form" class="btn btn-primary">Cadastrar Moto</a>
+<a href="/moto/form" class="btn btn-primary" th:text="#{motorcycle.new}"></a>
 
 <div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
     <span th:text="${message}"></span>
@@ -19,23 +36,17 @@
 
 <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 p-8">
     <div th:each="moto : ${motos}" class="card card-border bg-base-300 w-96">
-
-
         <div class="card-body items-center">
             <h2 th:text="${moto.modelo}" class="card-title"></h2>
-            <p th:text="${moto.placa}" ></p>
-            <p th:text="${moto.status}" ></p>
-            <div th:text="${moto.dataCadastro }"
-                 >
-            </div>
+            <p><strong>Placa:</strong> <span th:text="${moto.placa}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${moto.status}"></span></p>
+            <p><strong>Data Cadastro:</strong> <span th:text="${#temporals.format(moto.dataCadastro, 'dd/MM/yyyy')}"></span></p>
         </div>
-
         <div class="card-actions justify-end m-4">
-            <button class="btn btn-primary">apagar</button>
+            <button class="btn btn-primary">Apagar</button>
         </div>
     </div>
 </main>
-
 
 </body>
 </html>

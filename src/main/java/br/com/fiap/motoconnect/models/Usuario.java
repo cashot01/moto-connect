@@ -20,14 +20,17 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "nome usuario obrigatorio")
+    @NotBlank(message = "{user.name.notblank}")
     private String nome;
 
-    @Email(message = "email invalido")
-    @NotBlank(message = "email obrigatorio")
+    //@Email(message = "email invalido")
+    @Email(message = "{user.email}")
+    //@NotBlank(message = "email obrigatorio")
+    @NotBlank(message = "{user.email.notblank}")
     private String email;
 
-    @NotBlank(message = "senha origatoria")
+    //@NotBlank(message = "senha origatoria")
+    @NotBlank(message = "{user.password.notblank}")
     private String senha;
 
 }

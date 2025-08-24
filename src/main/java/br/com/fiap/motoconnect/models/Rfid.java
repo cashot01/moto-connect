@@ -20,13 +20,16 @@ public class Rfid {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "nome da área requerida")
+    //@NotBlank(message = "nome da área requerida")
+    @NotBlank(message = "{rfid.areaname.notblank}")
     private String nomeArea;
 
-    @NotBlank(message = "latitude requerida")
+    //@NotBlank(message = "latitude requerida")
+    @NotBlank(message= "{rfid.latitude.notblank}")
     private String latitude;
 
-    @NotBlank(message = "longitude requerida")
+    //@NotBlank(message = "longitude requerida")
+    @NotBlank(message= "{rfid.longitude.notblank}")
     private String longitude;
 
     @OneToOne(mappedBy = "rfid")

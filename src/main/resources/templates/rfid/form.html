@@ -9,31 +9,32 @@
 </head>
 <body>
 
-<h1 class="text-2xl font-bold text-primary p-8">Moto Connect</h1>
+<h1 class="text-2xl font-bold text-primary p-8">Cadastrar Rfid</h1>
 
 <main class="grid place-items-center gap-4 p-8">
-    <form class="w-full max-w-md" method="post">
+    <form class="w-full max-w-md" method="post" th:object="${rfid}">
+
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Nome Area</legend>
-            <input name="title" type="text" class="input" placeholder="digite a area" />
-            <p class="label"> area obrigatório</p>
+            <legend class="fieldset-legend" th:text="#{areaName}"></legend>
+            <input th:field="*{nomeArea}" type="text" class="input"  />
+            <p class="label text-error" th:errors="*{nomeArea}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Latitude</legend>
-            <input name="title" type="text" class="input" placeholder="digite a latitude" />
-            <p class="label">latitude obrigatória</p>
+            <legend class="fieldset-legend" th:text="#{latitude}"></legend>
+            <input th:field="*{latitude}" type="text" class="input"  />
+            <p class="label text-error" th:errors="*{latitude}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Longitude</legend>
-            <input name="title" type="text" class="input" placeholder="digite a logitude" />
-            <p class="label">logitude obrigatória</p>
+            <legend class="fieldset-legend" th:text="#{longitude}"></legend>
+            <input th:field="*{longitude}" type="text" class="input"  />
+            <p class="label text-error" th:errors="*{longitude}"></p>
         </fieldset>
 
         <div class="space-x-4">
-            <a href="/rfid" class="btn btn-neutral">Cancelar</a>
-            <button class="btn btn-primary">Salvar</button>
+            <a href="/rfid" class="btn btn-neutral" th:text="#{cancel}"></a>
+            <button class="btn btn-primary" th:text="#{save}"></button>
         </div>
 
     </form>

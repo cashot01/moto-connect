@@ -9,9 +9,26 @@
 </head>
 <body>
 
-<h1 class="text-2xl font-bold text-primary p-8">Moto Connect</h1>
+<nav class="navbar bg-base-300 shadow-sm">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl">MotoConnect</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <details>
+                    <summary>🌎</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                        <li><a href="?lang=pt_BR">🇧🇷</a></li>
+                        <li><a href="?lang=en_US">🏴󠁧󠁢󠁥󠁮󠁧󠁿</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<a href="/rfid/form" class="btn btn-primary">Novo Rfid</a>
+<a href="/rfid/form" class="btn btn-primary" th:text="#{rfid.new}"></a>
 
 <div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
     <span th:text="${message}"></span>
@@ -21,9 +38,11 @@
     <div th:each="rfid : ${rfids}" class="card card-border bg-base-300 w-96">
 
         <div class="card-body items-center">
+
             <h2 th:text="${rfid.nomeArea}" class="card-title"></h2>
-            <p th:text="${rfid.latitude}" ></p>
-            <p th:text="${rfid.longitude}" ></p>
+            <p><strong>Latitude:</strong> <span th:text="${rfid.latitude}"></span></p>
+            <p><strong>Longitude:</strong> <span th:text="${rfid.longitude}"></span></p>
+
         </div>
 
         <div class="card-actions justify-end m-4">

@@ -20,10 +20,12 @@ public class HistoricoMoto  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Parte obrigatória")
+    //@NotBlank(message = "Parte obrigatória")
+    @NotBlank(message = "{historical.part.notblank}")
     private String parte; // hidráulica, elétrica, freios, motor
 
-    @NotBlank(message = "Descrição obrigatória")
+    //@NotBlank(message = "Descrição obrigatória")
+    @NotBlank(message = "{historical.description.notblank}")
     private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY)

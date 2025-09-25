@@ -10,9 +10,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -54,5 +52,36 @@ public class UsuarioController {
         //redirect.addFlashAttribute("message", "Usuario cadastrado com sucesso");
         redirect.addFlashAttribute("message", message);
         return "redirect:/usuario";
+    }
+
+    // Endpoint para exibir o formulário de edição (GET /usuario/{id}/update)
+    @GetMapping("/{id}/update")
+    public String showUpdateForm(@PathVariable Long id, Model model) {
+        var usuario = usuarioService.getUsuarioById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+        model.addAttribute("usuario", usuario); // Adiciona o usuário ao modelo
+        return "usuario/update"; // Retorna o template de atualização
+    }
+
+    // Endpoint para processar a atualização (PUT /usuario/{id}/update)
+    @PutMapping("/{id}/update")
+    public String update(@PathVariable Long id, @Valid Usuario usuarioDetails, BindingResult result, RedirectAttributes redirect) {
+        if (result.hasErrors()) {
+            return "usuario/update"; // Retorna o formulário de atualização em caso de erro de validação
+        }
+
+        usuarioService.updateUsuario(id, usuarioDetails); // Atualiza o usuário no banco de dados
+        var message = messageSource.getMessage("user.update.success", null, LocaleContextHolder.getLocale());
+        redirect.addFlashAttribute("message", message); // Adiciona uma mensagem de sucesso
+        return "redirect:/usuario"; // Redireciona para a lista de usuários
+    }
+
+    // Endpoint para deletar um usuário (GET /usuario/{id}/delete)
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes redirect) {
+        usuarioService.deleteUsuario(id); // Deleta o usuário do banco de dados
+        var message = messageSource.getMessage("user.delete.success", null, LocaleContextHolder.getLocale());
+        redirect.addFlashAttribute("message", message); // Adiciona uma mensagem de sucesso
+        return "redirect:/usuario"; // Redireciona para a lista de usuários
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoConnect - Cadastro de RFID</title>
+    <title>MotoConnect - RFIDs</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -13,21 +13,21 @@
         .navbar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        .table thead {
+            background-color: #667eea;
+            color: white;
         }
         .btn-custom {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             color: white;
             border-radius: 25px;
-            padding: 10px 25px;
+            padding: 8px 20px;
             font-weight: 600;
         }
-        .form-control, .form-select {
-            border-radius: 10px;
+        .btn-custom:hover {
+            opacity: 0.9;
+            color: white;
         }
     </style>
 </head>
@@ -78,38 +78,54 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="mb-4">
-                    <i class="fas fa-wifi me-2"></i>Cadastro de RFID
+                    <i class="fas fa-wifi me-2"></i>Lista de RFIDs
                 </h1>
             </div>
         </div>
 
-        <div class="card p-4">
-            <form th:action="@{/rfid}" th:object="${rfid}" method="post">
-                <input type="hidden" th:field="*{id}" />
+        <div th:if="${sucesso}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${sucesso}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
-                <div class="mb-3">
-                    <label for="nomeArea" class="form-label">Nome da Área</label>
-                    <input type="text" id="nomeArea" th:field="*{nomeArea}" class="form-control" th:classappend="${#fields.hasErrors('nomeArea')} ? 'is-invalid' : ''" placeholder="Ex: Entrada Principal">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeArea')}" th:errors="*{nomeArea}"></div>
-                </div>
+        <div class="mb-3">
+            <a href="/rfid/novo" class="btn btn-custom">
+                <i class="fas fa-plus me-2"></i>Novo RFID
+            </a>
+        </div>
 
-                <div class="mb-3">
-                    <label for="latitude" class="form-label">Latitude</label>
-                    <input type="number" step="any" id="latitude" th:field="*{latitude}" class="form-control" th:classappend="${#fields.hasErrors('latitude')} ? 'is-invalid' : ''" placeholder="Ex: -23.550520">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"></div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="longitude" class="form-label">Longitude</label>
-                    <input type="number" step="any" id="longitude" th:field="*{longitude}" class="form-control" th:classappend="${#fields.hasErrors('longitude')} ? 'is-invalid' : ''" placeholder="Ex: -46.633308">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"></div>
-                </div>
-
-                <div class="d-flex justify-content-end">
-                    <a href="/rfid" class="btn btn-secondary me-2">Cancelar</a>
-                    <button type="submit" class="btn btn-custom">Salvar RFID</button>
-                </div>
-            </form>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome da Área</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="rfid : ${rfids}">
+                            <td th:text="${rfid.id}"></td>
+                            <td th:text="${rfid.nomeArea}"></td>
+                            <td th:text="${rfid.latitude}"></td>
+                            <td th:text="${rfid.longitude}"></td>
+                            <td>
+                                <a th:href="@{/rfid/{id}/editar(id=${rfid.id})}" class="btn btn-warning btn-sm me-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form th:action="@{/rfid/{id}(id=${rfid.id})}" th:method="delete" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Tem certeza que deseja excluir este RFID?\');">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoConnect - Cadastro de RFID</title>
+    <title>MotoConnect - Detalhes da Moto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -26,9 +26,6 @@
             padding: 10px 25px;
             font-weight: 600;
         }
-        .form-control, .form-select {
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
@@ -47,13 +44,13 @@
                         <a class="nav-link" href="/home">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/motos">Motos</a>
+                        <a class="nav-link active" href="/motos">Motos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/historico">Histórico</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/rfid">RFID</a>
+                        <a class="nav-link" href="/rfid">RFID</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -78,38 +75,48 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="mb-4">
-                    <i class="fas fa-wifi me-2"></i>Cadastro de RFID
+                    <i class="fas fa-motorcycle me-2"></i>Detalhes da Moto
                 </h1>
             </div>
         </div>
 
         <div class="card p-4">
-            <form th:action="@{/rfid}" th:object="${rfid}" method="post">
-                <input type="hidden" th:field="*{id}" />
-
-                <div class="mb-3">
-                    <label for="nomeArea" class="form-label">Nome da Área</label>
-                    <input type="text" id="nomeArea" th:field="*{nomeArea}" class="form-control" th:classappend="${#fields.hasErrors('nomeArea')} ? 'is-invalid' : ''" placeholder="Ex: Entrada Principal">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeArea')}" th:errors="*{nomeArea}"></div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>ID:</strong> <span th:text="${moto.id}"></span>
                 </div>
-
-                <div class="mb-3">
-                    <label for="latitude" class="form-label">Latitude</label>
-                    <input type="number" step="any" id="latitude" th:field="*{latitude}" class="form-control" th:classappend="${#fields.hasErrors('latitude')} ? 'is-invalid' : ''" placeholder="Ex: -23.550520">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"></div>
+                <div class="col-md-6">
+                    <strong>Modelo:</strong> <span th:text="${moto.modelo}"></span>
                 </div>
-
-                <div class="mb-3">
-                    <label for="longitude" class="form-label">Longitude</label>
-                    <input type="number" step="any" id="longitude" th:field="*{longitude}" class="form-control" th:classappend="${#fields.hasErrors('longitude')} ? 'is-invalid' : ''" placeholder="Ex: -46.633308">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Placa:</strong> <span th:text="${moto.placa}"></span>
                 </div>
-
-                <div class="d-flex justify-content-end">
-                    <a href="/rfid" class="btn btn-secondary me-2">Cancelar</a>
-                    <button type="submit" class="btn btn-custom">Salvar RFID</button>
+                <div class="col-md-6">
+                    <strong>Data de Cadastro:</strong> <span th:text="${#temporals.format(moto.dataCadastro, 'dd/MM/yyyy')}"></span>
                 </div>
-            </form>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Status:</strong> <span th:text="${moto.status}"></span>
+                </div>
+                <div class="col-md-6">
+                    <strong>Usuário Responsável:</strong> <span th:text="${moto.usuario.nome}"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>RFID:</strong> <span th:text="${moto.rfid != null ? moto.rfid.nomeArea : 'N/A'}"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+                <a th:href="@{/motos/{id}/editar(id=${moto.id})}" class="btn btn-warning me-2">
+                    <i class="fas fa-edit me-2"></i>Editar
+                </a>
+                <a href="/motos" class="btn btn-secondary">Voltar para a Lista</a>
+            </div>
         </div>
     </div>
 

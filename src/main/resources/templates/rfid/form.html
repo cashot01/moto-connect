@@ -77,8 +77,8 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <h1 class="mb-4">
-                    <i class="fas fa-wifi me-2"></i>Cadastro de RFID
+                <h1 class="mb-4" th:text="#{rfid.create}">
+                    <i class="fas fa-wifi me-2"></i>
                 </h1>
             </div>
         </div>
@@ -88,26 +88,26 @@
                 <input type="hidden" th:field="*{id}" />
 
                 <div class="mb-3">
-                    <label for="nomeArea" class="form-label">Nome da Área</label>
+                    <label for="nomeArea" class="form-label" th:text="#{areaName}"></label>
                     <input type="text" id="nomeArea" th:field="*{nomeArea}" class="form-control" th:classappend="${#fields.hasErrors('nomeArea')} ? 'is-invalid' : ''" placeholder="Ex: Entrada Principal">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeArea')}" th:errors="*{nomeArea}"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="latitude" class="form-label">Latitude</label>
+                    <label for="latitude" class="form-label" th:text="#{latitude}"></label>
                     <input type="number" step="any" id="latitude" th:field="*{latitude}" class="form-control" th:classappend="${#fields.hasErrors('latitude')} ? 'is-invalid' : ''" placeholder="Ex: -23.550520">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="longitude" class="form-label">Longitude</label>
+                    <label for="longitude" class="form-label" th:text="#{longitude}"></label>
                     <input type="number" step="any" id="longitude" th:field="*{longitude}" class="form-control" th:classappend="${#fields.hasErrors('longitude')} ? 'is-invalid' : ''" placeholder="Ex: -46.633308">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"></div>
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <a href="/rfid" class="btn btn-secondary me-2">Cancelar</a>
-                    <button type="submit" class="btn btn-custom">Salvar RFID</button>
+                    <a href="/rfid" class="btn btn-secondary me-2" th:text="#{cancel}"></a>
+                    <button type="submit" class="btn btn-custom" th:text="#{save}"></button>
                 </div>
             </form>
         </div>

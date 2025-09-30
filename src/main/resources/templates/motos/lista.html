@@ -90,7 +90,7 @@
 
         <div class="mb-3">
             <a href="/motos/nova" class="btn btn-custom">
-                <i class="fas fa-plus me-2"></i>Nova Moto
+                <i class="fas fa-plus me-2" th:text="#{motorcycle.new}"></i>
             </a>
         </div>
 
@@ -100,10 +100,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th th:text="#{motorcycle.model}"></th>
-                            <th th:text="#{motorcycle.plate}"></th>
-                            <th th:text="#{motorcycle.date}"></th>
-                            <th th:text="#{motorcycle.status}"></th>
+                            <th th:text="#{model}"></th>
+                            <th th:text="#{plate}"></th>
+                            <th th:text="#{date}"></th>
+                            <th th:text="#{status}"></th>
                             <th th:text="#{user}"></th>
                             <th th:text="#{rfid}"></th>
                             <th th:text="#{actions}"></th>

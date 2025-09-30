@@ -83,26 +83,26 @@
     <div class="card p-4">
         <div class="row mb-3">
             <div class="col-md-6">
-                <strong>ID:</strong> <span th:text="${moto.id}"></span>
+                <strong th:text="#{id}">:</strong> <span th:text="${id}"></span>
             </div>
             <div class="col-md-6">
-                <strong>Modelo:</strong> <span th:text="${moto.modelo}"></span>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Placa:</strong> <span th:text="${moto.placa}"></span>
-            </div>
-            <div class="col-md-6">
-                <strong>Data de Cadastro:</strong> <span th:text="${#temporals.format(moto.dataCadastro, 'dd/MM/yyyy')}"></span>
+                <strong th:text="#{model}">:</strong> <span th:text="${model}"></span>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <strong>Status:</strong> <span th:text="${moto.status}"></span>
+                <strong>Placa:</strong> <span th:text="${plate}"></span>
             </div>
             <div class="col-md-6">
-                <strong>Usuário Responsável:</strong>
+                <strong th:text="#{date}">:</strong> <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong th:text="#{status}">:</strong> <span th:text="${status}"></span>
+            </div>
+            <div class="col-md-6">
+                <strong th:text="#{user}">:</strong>
                 <span th:if="${moto.usuario != null}" th:text="${moto.usuario.nome}"></span>
                 <span th:unless="${moto.usuario != null}">N/A</span>
             </div>
@@ -117,9 +117,9 @@
 
         <div class="d-flex justify-content-end mt-4">
             <a th:href="@{/motos/{id}/editar(id=${moto.id})}" class="btn btn-warning me-2">
-                <i class="fas fa-edit me-2"></i>Editar
+                <i class="fas fa-edit me-2" th:text="#{edit}"></i>
             </a>
-            <a href="/motos" class="btn btn-secondary">Voltar para a Lista</a>
+            <a href="/motos" class="btn btn-secondary" th:text="#{cancel}"></a>
         </div>
     </div>
 </div>

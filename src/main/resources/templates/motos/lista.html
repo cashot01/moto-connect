@@ -60,12 +60,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="fas fa-user me-1"></i>
-                            <span sec:authentication="name">Usuário</span>
+                            <span sec:authentication="name" th:text="#{user}"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                            <li><a class="dropdown-item" href="/perfil" th:text="#{profile}"></a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                            <li><a class="dropdown-item" href="/login" th:text="#{logout}"></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -77,8 +77,8 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <h1 class="mb-4">
-                    <i class="fas fa-motorcycle me-2"></i>Lista de Motos
+                <h1 class="mb-4" th:text="#{motorcycles}">
+                    <i class="fas fa-motorcycle me-2"></i>
                 </h1>
             </div>
         </div>
@@ -100,13 +100,13 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Modelo</th>
-                            <th>Placa</th>
-                            <th>Data Cadastro</th>
-                            <th>Status</th>
-                            <th>Usuário</th>
-                            <th>RFID</th>
-                            <th>Ações</th>
+                            <th th:text="#{motorcycle.model}"></th>
+                            <th th:text="#{motorcycle.plate}"></th>
+                            <th th:text="#{motorcycle.date}"></th>
+                            <th th:text="#{motorcycle.status}"></th>
+                            <th th:text="#{user}"></th>
+                            <th th:text="#{rfid}"></th>
+                            <th th:text="#{actions}"></th>
                         </tr>
                     </thead>
                     <tbody>

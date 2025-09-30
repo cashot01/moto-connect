@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "rfid")
+@Table(name = "tb_rfid")
 public class Rfid {
 
     @Id
@@ -25,10 +25,10 @@ public class Rfid {
     private String nomeArea;
 
     @NotNull(message = "A latitude não pode ser nula.")
-    @Column(name = "latitude", nullable = false, precision = 9, scale = 6)
-    private Double latitude;
+    @Column(name = "latitude", nullable = false)
+    private Float latitude;
 
     @NotNull(message = "A longitude não pode ser nula.")
-    @Column(name = "longitude", nullable = false, precision = 9, scale = 6)
-    private Double longitude;
+    @Column(name = "longitude", nullable = false)
+    private Float longitude;
 }

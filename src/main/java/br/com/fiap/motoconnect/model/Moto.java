@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "moto", uniqueConstraints = {
+@Table(name = "tb_moto", uniqueConstraints = {
     @UniqueConstraint(name = "uk_moto_placa", columnNames = {"placa"})
 })
 public class Moto {
@@ -47,7 +47,7 @@ public class Moto {
     private StatusMoto status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rfid_id", foreignKey = @ForeignKey(name = "fk_moto_rfid"))
+    @JoinColumn(name = "tb_rfid", foreignKey = @ForeignKey(name = "fk_moto_rfid"))
     private Rfid rfid;
 
     @NotNull(message = "O usuário não pode ser nulo.")

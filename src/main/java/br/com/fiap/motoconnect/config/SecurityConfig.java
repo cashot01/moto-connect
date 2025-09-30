@@ -15,21 +15,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll() // Permite acesso à página de login e recursos estáticos
-                .requestMatchers("/admin/**").hasRole("ADMIN") // Apenas usuários com perfil ADMIN acessam /admin/**
-                .anyRequest().authenticated() // Todas as outras requisições exigem autenticação
-            )
-            .formLogin(form -> form
-                .loginPage("/login") // Define a página de login customizada
-                .defaultSuccessUrl("/home", true) // Página para onde o usuário é redirecionado após o login
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutUrl("/logout") // URL para fazer logout
-                .logoutSuccessUrl("/login?logout") // Redireciona para a página de login com um parâmetro
-                .permitAll()
-            );
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll() // Permite acesso à página de login e recursos estáticos
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Apenas usuários com perfil ADMIN acessam /admin/**
+                        .requestMatchers("/perfil").authenticated() // Apenas usuários autenticados podem acessar /perfil
+                        .anyRequest().authenticated() // Todas as outras requisições exigem autenticação
+                )
+                .formLogin(form -> form
+                        .loginPage("/login") // Define a página de login customizada
+                        .defaultSuccessUrl("/home", true) // Página para onde o usuário é redirecionado após o login
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // URL para fazer logout
+                        .logoutSuccessUrl("/login?logout") // Redireciona para a página de login com um parâmetro
+                        .permitAll()
+                );
         return http.build();
     }
 

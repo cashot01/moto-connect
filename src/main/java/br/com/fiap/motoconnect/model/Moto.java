@@ -24,7 +24,7 @@ public class Moto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O modelo não pode estar em branco.")
+    @NotNull(message = "O modelo não pode estar em branco.")
     @Size(max = 10, message = "O modelo deve ter no máximo 10 caracteres.")
     @Column(name = "modelo", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
@@ -40,8 +40,7 @@ public class Moto {
     @Column(name = "data_cadastro", nullable = false)
     private LocalDate dataCadastro;
 
-    @NotBlank(message = "O status não pode estar em branco.")
-    @Size(max = 15, message = "O status deve ter no máximo 15 caracteres.")
+    @NotNull(message = "O status não pode ser nulo.")
     @Column(name = "status", nullable = false, length = 15)
     @Enumerated(EnumType.STRING)
     private StatusMoto status;

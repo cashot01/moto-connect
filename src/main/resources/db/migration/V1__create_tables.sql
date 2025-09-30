@@ -84,3 +84,7 @@ VALUES ('Motor', 'Manutenção realizada no motor.', 1);
 -- Histórico 2: Para Moto 2
 INSERT INTO tb_historico_moto (parte, descricao, moto_id)
 VALUES ('Freio', 'Troca de pastilhas de freio.', 2);
+
+UPDATE tb_usuario
+SET senha = '$2a$10$L786A1K6KfRCZ3vLVo.o9eJU4lAFeOkmzXwRjose0OmvL7jZdiZN.'
+WHERE email = 'maria.santos@example.com';

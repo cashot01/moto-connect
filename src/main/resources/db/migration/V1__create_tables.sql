@@ -89,6 +89,10 @@ UPDATE tb_usuario
 SET senha = '$2a$10$L786A1K6KfRCZ3vLVo.o9eJU4lAFeOkmzXwRjose0OmvL7jZdiZN.'
 WHERE email = 'maria.santos@example.com';
 
+UPDATE tb_usuario
+SET senha = '$2a$10$9SM/gjcycv3dXuwTlzJqUuElweojzJ6bYm98D3f0Mo4.oM/hX19cG'
+WHERE email = 'joao.silva@example.com';
+
 -- Adiciona a coluna usuario_id como opcional
 ALTER TABLE tb_historico_moto ADD COLUMN usuario_id BIGINT;
 

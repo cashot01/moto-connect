@@ -28,7 +28,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout") // URL para fazer logout
-                        .logoutSuccessUrl("/login?logout") // Redireciona para a página de login com um parâmetro
+                        .logoutSuccessUrl("/login") // Redireciona para a página de login com um parâmetro
                         .permitAll()
                 );
         return http.build();

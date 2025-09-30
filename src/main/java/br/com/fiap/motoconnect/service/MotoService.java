@@ -20,12 +20,13 @@ public class MotoService {
         return motoRepository.findAll();
     }
 
-    public Optional<Moto> buscarPorId(Long id) {
-        return motoRepository.findById(id);
+    public Moto buscarPorId(Long id) {
+        return motoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Moto não encontrada"));
     }
 
-    public Moto salvar(Moto moto) {
-        return motoRepository.save(moto);
+    public void salvar(Moto moto) {
+        motoRepository.save(moto);
     }
 
     public void excluir(Long id) {

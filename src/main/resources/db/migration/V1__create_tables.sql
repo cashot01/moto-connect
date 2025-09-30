@@ -71,11 +71,11 @@ VALUES ('Área B', -22.9068, -43.1729);
 
 -- Moto 1: Associada ao Usuário 1 (João Silva) e RFID 1 (Área A)
 INSERT INTO tb_moto (modelo, placa, data_cadastro, status, tb_rfid, usuario_id)
-VALUES ('CG160', 'ABC1234', '2023-01-15', 'DISPONIVEL', 1, 1);
+VALUES ('SPORT', 'ABC1234', '2023-01-15', 'MANUTENCAO', 1, 1);
 
 -- Moto 2: Associada ao Usuário 2 (Maria Santos) e RFID 2 (Área B)
 INSERT INTO tb_moto (modelo, placa, data_cadastro, status, tb_rfid, usuario_id)
-VALUES ('CB500', 'DEF5678', '2023-02-20', 'EM_USO', 2, 2);
+VALUES ('POP', 'DEF5678', '2023-02-20', 'REVISADA', 2, 2);
 
 -- Histórico 1: Para Moto 1
 INSERT INTO tb_historico_moto (parte, descricao, moto_id)

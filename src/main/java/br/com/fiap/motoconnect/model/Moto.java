@@ -25,7 +25,6 @@ public class Moto {
     private Long id;
 
     @NotNull(message = "O modelo não pode estar em branco.")
-    @Size(max = 10, message = "O modelo deve ter no máximo 10 caracteres.")
     @Column(name = "modelo", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
     private ModeloMoto modelo;

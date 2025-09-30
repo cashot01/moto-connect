@@ -36,9 +36,9 @@ public class HistoricoMoto {
     @JoinColumn(name = "moto_id", nullable = false, foreignKey = @ForeignKey(name = "fk_historico_moto"))
     private Moto moto;
 
-
-
-
-
+    @NotNull(message = "O usuário não pode ser nulo.")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false, foreignKey = @ForeignKey(name = "fk_historico_usuario"))
+    private Usuario usuario;
 
 }

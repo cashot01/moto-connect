@@ -88,3 +88,22 @@ VALUES ('Freio', 'Troca de pastilhas de freio.', 2);
 UPDATE tb_usuario
 SET senha = '$2a$10$L786A1K6KfRCZ3vLVo.o9eJU4lAFeOkmzXwRjose0OmvL7jZdiZN.'
 WHERE email = 'maria.santos@example.com';
+
+-- Adiciona a coluna usuario_id como opcional
+ALTER TABLE tb_historico_moto ADD COLUMN usuario_id BIGINT;
+
+-- Atualiza os registros existentes
+UPDATE tb_historico_moto
+SET usuario_id = 1
+WHERE id = 1;
+
+UPDATE tb_historico_moto
+SET usuario_id = 2
+WHERE id = 2;
+
+-- Aplica a restrição NOT NULL
+ALTER TABLE tb_historico_moto ALTER COLUMN usuario_id SET NOT NULL;
+
+-- Adiciona a chave estrangeira
+ALTER TABLE tb_historico_moto
+    ADD CONSTRAINT fk_historico_usuario FOREIGN KEY (usuario_id) REFERENCES tb_usuario (id);

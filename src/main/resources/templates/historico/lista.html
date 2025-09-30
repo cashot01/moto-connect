@@ -113,9 +113,15 @@
                             <td th:text="${historico.id}"></td>
                             <td th:text="${historico.parte}"></td>
                             <td th:text="${historico.descricao}"></td>
-                            <td th:text="${historico.moto.placa}"></td>
-                            <td th:text="${historico.usuario.nome}"></td>
-                            <td th:text="${#temporals.format(historico.dataRegistro, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td>
+                                <span th:if="${historico.moto != null}" th:text="${historico.moto.placa}"></span>
+                                <span th:unless="${historico.moto != null}">N/A</span>
+                            </td>
+                            <td>
+                                <span th:if="${historico.usuario != null}" th:text="${historico.usuario.nome}"></span>
+                                <span th:unless="${historico.usuario != null}">N/A</span>
+                            </td>
+
                             <td>
                                 <a th:href="@{/historico/{id}/editar(id=${historico.id})}" class="btn btn-warning btn-sm me-2">
                                     <i class="fas fa-edit"></i>

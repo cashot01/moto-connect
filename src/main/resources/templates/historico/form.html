@@ -89,32 +89,32 @@
 
                 <div class="mb-3">
                     <label for="parte" class="form-label">Parte</label>
-                    <input type="text" id="parte" th:field="*{parte}" class="form-control" th:classappend="${#fields.hasErrors(\'parte\')} ? \'is-invalid\' : \'\'" placeholder="Ex: Motor, Freio, Pneu">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors(\'parte\')}" th:errors="*{parte}"></div>
+                    <input type="text" id="parte" th:field="*{parte}" class="form-control" th:classappend="${#fields.hasErrors(&quot;parte&quot;)} ? 'is-invalid' : ''" placeholder="Ex: Motor, Freio, Pneu">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors(&quot;parte&quot;)}" th:errors="*{parte}"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição</label>
-                    <textarea id="descricao" th:field="*{descricao}" class="form-control" th:classappend="${#fields.hasErrors(\'descricao\')} ? \'is-invalid\' : \'\'" rows="3" placeholder="Detalhes da manutenção ou revisão."></textarea>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors(\'descricao\')}" th:errors="*{descricao}"></div>
+                    <textarea id="descricao" th:field="*{descricao}" class="form-control" th:classappend="${#fields.hasErrors(&quot;descricao&quot;)} ? 'is-invalid' : ''" rows="3" placeholder="Detalhes da manutenção ou revisão."></textarea>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors(&quot;descricao&quot;)}" th:errors="*{descricao}"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="moto" class="form-label">Moto</label>
-                    <select id="moto" th:field="*{moto.id}" class="form-select" th:classappend="${#fields.hasErrors(\'moto\')} ? \'is-invalid\' : \'\'">
+                    <select id="moto" th:field="*{moto.id}" class="form-select" th:classappend="${#fields.hasErrors(&quot;moto&quot;)} ? 'is-invalid' : ''">
                         <option value="">Selecione a Moto</option>
                         <option th:each="moto : ${motos}" th:value="${moto.id}" th:text="${moto.placa + ' (' + moto.modelo + ')'}"></option>
                     </select>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors(\'moto\')}" th:errors="*{moto}"></div>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors(&quot;moto&quot;)}" th:errors="*{moto}"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuário Responsável</label>
-                    <select id="usuario" th:field="*{usuario.id}" class="form-select" th:classappend="${#fields.hasErrors(\'usuario\')} ? \'is-invalid\' : \'\'">
+                    <select id="usuario" th:field="*{usuario.id}" class="form-select" th:classappend="${#fields.hasErrors(&quot;usuario&quot;)} ? 'is-invalid' : ''">
                         <option value="">Selecione o Usuário</option>
                         <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
                     </select>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors(\'usuario\')}" th:errors="*{usuario}"></div>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors(&quot;usuario&quot;)}" th:errors="*{usuario}"></div>
                 </div>
 
                 <div class="d-flex justify-content-end">

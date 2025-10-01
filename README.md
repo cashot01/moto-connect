@@ -3,6 +3,11 @@
 Projeto **Moto Connect**  
 Aplicação Spring Boot + MVC + Gradle — Challenge Mottu / Sprint 3
 
+## Integrantes:
+Cauan Passos RM555466 2TDSPG
+Mateus Henrique de Souza RM558424 2TDSPG
+Lucas Fialho RM557884  2TDSPV
+
 ---
 
 ## Índice

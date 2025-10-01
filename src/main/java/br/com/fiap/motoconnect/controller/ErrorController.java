@@ -9,6 +9,6 @@ public class ErrorController {
     @GetMapping("/acesso-negado")
     public String acessoNegado() {
 
-        return "acesso-negado"; // Retorna o template Thymeleaf "acesso-negado.html"
+        return "acesso-negado";
     }
 }

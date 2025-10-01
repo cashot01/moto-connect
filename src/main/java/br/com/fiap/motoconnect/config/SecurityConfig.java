@@ -17,9 +17,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/perfil").authenticated()
-                        .requestMatchers("/usuarios").hasRole("ADMIN") // Apenas ADMIN pode ver usuários
+                        .requestMatchers("/usuarios").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -33,7 +32,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .exceptionHandling(exception -> exception
-                        .accessDeniedPage("/acesso-negado") // ⭐ Página personalizada para 403
+                        .accessDeniedPage("/acesso-negado") //  Página personalizada para 403
                 );
         return http.build();
     }

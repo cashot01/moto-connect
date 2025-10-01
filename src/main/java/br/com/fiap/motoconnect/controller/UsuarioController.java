@@ -21,7 +21,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')") // Garante que apenas ADMINs podem acessar esta rota
+    @PreAuthorize("hasRole('ADMIN')")
     public String listarUsuarios(Model model) {
         List<Usuario> usuarios = usuarioService.listarTodos();
         model.addAttribute("usuarios", usuarios);
@@ -30,6 +30,6 @@ public class UsuarioController {
 
     @GetMapping("/acesso-negado")
     public String acessoNegado() {
-        return "acesso-negado"; // Retorna o template Thymeleaf "acesso-negado.html"
+        return "acesso-negado";
     }
 }

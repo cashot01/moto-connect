@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface MotoRepository extends JpaRepository<Moto, Long> {
 
-    @EntityGraph(attributePaths = {"usuario", "rfid"}) // Carrega os relacionamentos
+    @EntityGraph(attributePaths = {"usuario", "rfid"})
     Optional<Moto> findById(Long id);
 }

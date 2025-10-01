@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface HistoricoMotoRepository extends JpaRepository<HistoricoMoto, Long> {
 
-    @EntityGraph(attributePaths = {"moto", "usuario"}) // Carrega os relacionamentos
+    @EntityGraph(attributePaths = {"moto", "usuario"})
     List<HistoricoMoto> findAll();
 
-    @EntityGraph(attributePaths = {"moto", "usuario"}) // Carrega os relacionamentos
+    @EntityGraph(attributePaths = {"moto", "usuario"})
     Optional<HistoricoMoto> findById(Long id);
 }

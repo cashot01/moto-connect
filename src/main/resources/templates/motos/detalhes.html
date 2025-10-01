@@ -6,124 +6,66 @@
     <title>MotoConnect - Detalhes da Moto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        .btn-custom {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
-            border-radius: 25px;
-            padding: 10px 25px;
-            font-weight: 600;
-        }
-    </style>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-            <i class="fas fa-motorcycle me-2"></i>MotoConnect
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/motos">Motos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/historico">Histórico</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/rfid">RFID</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-user me-1"></i>
-                        <span sec:authentication="name">Usuário</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/logout">Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <div th:insert="~{fragments/menu :: navbar}"></div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">
+                    <i class="fas fa-motorcycle me-2"></i>Detalhes da Moto
+                </h1>
+            </div>
+        </div>
+
+        <div class="card p-4">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong th:text="#{id}">:</strong> <span th:text="${id}"></span>
+                </div>
+                <div class="col-md-6">
+                    <strong th:text="#{model}">:</strong> <span th:text="${model}"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Placa:</strong> <span th:text="${plate}"></span>
+                </div>
+                <div class="col-md-6">
+                    <strong th:text="#{date}">:</strong> <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong th:text="#{status}">:</strong> <span th:text="${status}"></span>
+                </div>
+                <div class="col-md-6">
+                    <strong th:text="#{user}">:</strong>
+                    <span th:if="${moto.usuario != null}" th:text="${moto.usuario.nome}"></span>
+                    <span th:unless="${moto.usuario != null}">N/A</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>RFID:</strong>
+                    <span th:if="${moto.rfid != null}" th:text="${moto.rfid.nomeArea}"></span>
+                    <span th:unless="${moto.rfid != null}">N/A</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+                <a th:href="@{/motos/{id}/editar(id=${moto.id})}" class="btn btn-warning me-2">
+                    <i class="fas fa-edit me-2" th:text="#{edit}"></i>
+                </a>
+                <a href="/motos" class="btn btn-secondary" th:text="#{cancel}"></a>
+            </div>
         </div>
     </div>
-</nav>
 
-<!-- Main Content -->
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="mb-4">
-                <i class="fas fa-motorcycle me-2"></i>Detalhes da Moto
-            </h1>
-        </div>
-    </div>
-
-    <div class="card p-4">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong th:text="#{id}">:</strong> <span th:text="${id}"></span>
-            </div>
-            <div class="col-md-6">
-                <strong th:text="#{model}">:</strong> <span th:text="${model}"></span>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Placa:</strong> <span th:text="${plate}"></span>
-            </div>
-            <div class="col-md-6">
-                <strong th:text="#{date}">:</strong> <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong th:text="#{status}">:</strong> <span th:text="${status}"></span>
-            </div>
-            <div class="col-md-6">
-                <strong th:text="#{user}">:</strong>
-                <span th:if="${moto.usuario != null}" th:text="${moto.usuario.nome}"></span>
-                <span th:unless="${moto.usuario != null}">N/A</span>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>RFID:</strong>
-                <span th:if="${moto.rfid != null}" th:text="${moto.rfid.nomeArea}"></span>
-                <span th:unless="${moto.rfid != null}">N/A</span>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-end mt-4">
-            <a th:href="@{/motos/{id}/editar(id=${moto.id})}" class="btn btn-warning me-2">
-                <i class="fas fa-edit me-2" th:text="#{edit}"></i>
-            </a>
-            <a href="/motos" class="btn btn-secondary" th:text="#{cancel}"></a>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

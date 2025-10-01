@@ -4,16 +4,14 @@ CREATE TABLE tb_historico_moto
     parte     VARCHAR(255),
     descricao VARCHAR(255),
     moto_id   BIGINT                                  NOT NULL,
+    usuario_id BIGINT                                NOT NULL,
     CONSTRAINT pk_tb_historico_moto PRIMARY KEY (id)
 );
 
 ALTER TABLE tb_historico_moto
     ADD CONSTRAINT fk_tb_historico_moto_on_moto FOREIGN KEY (moto_id) REFERENCES tb_moto (id);
 
-ALTER TABLE tb_historico_moto ADD COLUMN usuario_id BIGINT;
-
-
-ALTER TABLE tb_historico_moto ALTER COLUMN usuario_id SET NOT NULL;
-
 ALTER TABLE tb_historico_moto
-    ADD CONSTRAINT fk_historico_usuario FOREIGN KEY (usuario_id) REFERENCES tb_usuario (id);
+    ADD CONSTRAINT fk_tb_historico_moto_on_usuario FOREIGN KEY (usuario_id) REFERENCES tb_usuario (id);
+
+

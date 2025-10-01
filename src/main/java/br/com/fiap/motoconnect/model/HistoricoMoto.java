@@ -41,4 +41,5 @@ public class HistoricoMoto {
     @JoinColumn(name = "usuario_id", nullable = false, foreignKey = @ForeignKey(name = "fk_historico_usuario"))
     private Usuario usuario;
 
+
 }

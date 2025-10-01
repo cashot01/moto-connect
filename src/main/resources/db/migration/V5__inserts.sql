@@ -29,21 +29,14 @@ INSERT INTO tb_moto (modelo, placa, data_cadastro, status, tb_rfid, usuario_id)
 VALUES ('POP', 'DEF5678', '2023-02-20', 'REVISADA', 2, 2);
 
 
--- HISTORICOS
-INSERT INTO tb_historico_moto (parte, descricao, moto_id)
-VALUES ('Motor', 'Manutenção realizada no motor.', 1);
+INSERT INTO tb_historico_moto (parte, descricao, moto_id, usuario_id)
+VALUES ('Motor', 'Manutenção realizada no motor.', 1, 1);
 
-INSERT INTO tb_historico_moto (parte, descricao, moto_id)
-VALUES ('Freio', 'Troca de pastilhas de freio.', 2);
+INSERT INTO tb_historico_moto (parte, descricao, moto_id, usuario_id)
+VALUES ('Freio', 'Troca de pastilhas de freio.', 2, 2);
 
 
-UPDATE tb_historico_moto
-SET usuario_id = 1
-WHERE id = 1;
 
-UPDATE tb_historico_moto
-SET usuario_id = 2
-WHERE id = 2;
 
 
 

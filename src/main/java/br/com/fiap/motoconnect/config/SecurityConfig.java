@@ -16,27 +16,30 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll() // Permite acesso à página de login e recursos estáticos
-                        .requestMatchers("/admin/**").hasRole("ADMIN") // Apenas usuários com perfil ADMIN acessam /admin/**
-                        .requestMatchers("/perfil").authenticated() // Apenas usuários autenticados podem acessar /perfil
-                        .anyRequest().authenticated() // Todas as outras requisições exigem autenticação
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/perfil").authenticated()
+                        .requestMatchers("/usuarios").hasRole("ADMIN") // Apenas ADMIN pode ver usuários
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login") // Define a página de login customizada
-                        .defaultSuccessUrl("/home", true) // Página para onde o usuário é redirecionado após o login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout") // URL para fazer logout
-                        .logoutSuccessUrl("/login") // Redireciona para a página de login com um parâmetro
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .permitAll()
+                )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedPage("/acesso-negado") // ⭐ Página personalizada para 403
                 );
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Usa BCrypt para criptografar as senhas. É muito importante nunca salvar senhas em texto plano!
         return new BCryptPasswordEncoder();
     }
 }

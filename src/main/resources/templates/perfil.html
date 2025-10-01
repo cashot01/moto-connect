@@ -37,6 +37,13 @@
             </div>
         </div>
 
+
+        <div class="mt-4" sec:authorize="hasRole('ADMIN')">
+            <a href="/usuarios" class="btn btn-primary">
+                <i class="fas fa-users me-2"></i>Ver Todos os Usuários
+            </a>
+        </div>
+
         <!-- Botão para Voltar à Home -->
         <div class="mt-4">
             <a href="/home" class="btn btn-custom">

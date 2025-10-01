@@ -83,7 +83,7 @@ Visualizações / relacionamentos entre entidades
   | Perfil | E-mail                                                              | Senha     |
 | ------ | ------------------------------------------------------------------- | --------- |
 | ADMIN  | cauan.passos@motoconnect.com | admin1234 |
-| USER   | mateus.souza@motoconnect.com | senha1234 |
+| USER   | mateus.souza@motoconnect.com | senha123 |
 
 
 ## 7. Fluxo dos dados 

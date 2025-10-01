@@ -50,28 +50,28 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/home">Dashboard</a>
+                        <a class="nav-link active" href="/home" th:text="#{dashboard}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/motos">Motos</a>
+                        <a class="nav-link" href="/motos" th:text="#{motorcycles}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/historico">Histórico</a>
+                        <a class="nav-link" href="/historico" th:text="#{historic}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/rfid">RFID</a>
+                        <a class="nav-link" href="/rfid" th:text="#{rfid}"></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="fas fa-user me-1"></i>
-                            <span sec:authentication="name">Usuário</span>
+                            <span sec:authentication="name" th:text="#{user}"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                            <li><a class="dropdown-item" href="/perfil" th:text="#{profile}"></a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                            <li><a class="dropdown-item" href="/login" th:text="#{logout}"></a></li>
                         </ul>
                     </li>
                 </ul>

@@ -58,9 +58,7 @@
                             <td th:text="${moto.usuario.nome}"></td>
                             <td th:text="${moto.rfid != null ? moto.rfid.nomeArea : 'N/A'}"></td>
                             <td>
-                                <a th:href="@{/motos/{id}(id=${moto.id})}" class="btn btn-info btn-sm me-2">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+
                                 <a th:href="@{/motos/{id}/editar(id=${moto.id})}" class="btn btn-warning btn-sm me-2">
                                     <i class="fas fa-edit"></i>
                                 </a>

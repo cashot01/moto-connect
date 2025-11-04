@@ -5,7 +5,6 @@ import br.com.fiap.motoconnect.repository.MotoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MotoService {
@@ -31,5 +30,9 @@ public class MotoService {
 
     public void excluir(Long id) {
         motoRepository.deleteById(id);
+    }
+
+    public String executarProcedimentoJson() {
+        return motoRepository.executarProcedimentoJson();
     }
 }

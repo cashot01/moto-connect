@@ -80,4 +80,16 @@ public class MotoController {
         redirectAttributes.addFlashAttribute("sucesso", "Moto excluída com sucesso!");
         return "redirect:/motos";
     }
+
+    @PostMapping("/executar-procedimento")
+    public String executarProcedimento(RedirectAttributes redirectAttributes) {
+        try {
+            String resultado = motoService.executarProcedimentoJson();
+            redirectAttributes.addFlashAttribute("sucesso", "Procedimento executado com sucesso!");
+            redirectAttributes.addFlashAttribute("resultadoJson", resultado);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("erro", "Erro ao executar procedimento: " + e.getMessage());
+        }
+        return "redirect:/motos";
+    }
 }

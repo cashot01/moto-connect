@@ -1,37 +1,38 @@
--- procedimento 1 
-CREATE OR REPLACE PROCEDURE sp_join_json()
-LANGUAGE plpgsql
+-- Alterar para uma função que RETORNA o JSON
+CREATE OR REPLACE FUNCTION fn_join_json()
+    RETURNS TEXT
+    LANGUAGE plpgsql
 AS $$
 DECLARE
     v_json TEXT;
 BEGIN
     SELECT jsonb_pretty(
-        jsonb_build_object(
-            'motos',
-            jsonb_agg(
-                jsonb_build_object(
-                    'placa', m.placa,
-                    'modelo', m.modelo,
-                    'usuario', u.nome
-                )
-            )
-        )
-    )
+                   jsonb_build_object(
+                           'motos',
+                           jsonb_agg(
+                                   jsonb_build_object(
+                                           'placa', m.placa,
+                                           'modelo', m.modelo,
+                                           'usuario', u.nome
+                                   )
+                           )
+                   )
+           )
     INTO v_json
     FROM tb_moto m
-    JOIN tb_usuario u ON m.usuario_id = u.id;
+             JOIN tb_usuario u ON m.usuario_id = u.id;
 
-    RAISE NOTICE '%', v_json;
+    RETURN v_json;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        RAISE NOTICE 'Nenhum dado encontrado.';
+        RETURN '{"erro": "Nenhum dado encontrado"}';
     WHEN OTHERS THEN
-        RAISE NOTICE 'Erro desconhecido: %', SQLERRM;
+        RETURN '{"erro": "Erro desconhecido: ' || SQLERRM || '"}';
 END;
 $$;
 
--- execução procedimento 1
-CALL sp_join_json();
+-- Testar a função
+SELECT fn_join_json();
 
 -- porcedimento 2
 CREATE OR REPLACE PROCEDURE sp_somatorio_manual_adaptado()

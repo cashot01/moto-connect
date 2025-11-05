@@ -92,4 +92,16 @@ public class MotoController {
         }
         return "redirect:/motos";
     }
+
+    @PostMapping("/executar-somatorio")
+    public String executarSomatorio(RedirectAttributes redirectAttributes) {
+        try {
+            String resultado = motoService.executarFuncaoSomatorioJson();
+            redirectAttributes.addFlashAttribute("sucesso", "Relatório de somatório executado com sucesso!");
+            redirectAttributes.addFlashAttribute("resultadoJson", resultado);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("erro", "Erro ao executar relatório: " + e.getMessage());
+        }
+        return "redirect:/motos";
+    }
 }

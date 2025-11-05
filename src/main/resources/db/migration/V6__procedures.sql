@@ -34,14 +34,16 @@ $$;
 -- Testar a função
 SELECT fn_join_json();
 
--- porcedimento 2
-CREATE OR REPLACE PROCEDURE sp_somatorio_manual_adaptado()
-LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION fn_somatorio_manual_json()
+    RETURNS TEXT
+    LANGUAGE plpgsql
 AS $$
 DECLARE
     v_usuario_atual TEXT := NULL;
     v_total_usuario INT := 0;
     v_total_geral INT := 0;
+    v_json_result JSONB := '[]'::JSONB;
+    v_current_array JSONB := '[]'::JSONB;
     reg RECORD;
     c_motos CURSOR FOR
         SELECT u.nome AS usuario, m.modelo, COUNT(*) AS total
@@ -53,33 +55,52 @@ BEGIN
     FOR reg IN c_motos LOOP
         -- Verifica se mudou de usuário
         IF v_usuario_atual IS NULL OR v_usuario_atual != reg.usuario THEN
+            -- Adiciona o usuário anterior ao resultado
             IF v_usuario_atual IS NOT NULL THEN
-                RAISE NOTICE 'Subtotal do usuário %: %', v_usuario_atual, v_total_usuario;
+                v_json_result = v_json_result || jsonb_build_object(
+                    'usuario', v_usuario_atual,
+                    'subtotal', v_total_usuario,
+                    'detalhes', v_current_array
+                );
                 v_total_geral := v_total_geral + v_total_usuario;
                 v_total_usuario := 0;
+                v_current_array := '[]'::JSONB;
             END IF;
             v_usuario_atual := reg.usuario;
         END IF;
 
-        -- Exibe os detalhes
-        RAISE NOTICE 'Usuário: %, Modelo: %, Total: %', reg.usuario, reg.modelo, reg.total;
+        -- Adiciona os detalhes do modelo atual
+        v_current_array = v_current_array || jsonb_build_object(
+            'modelo', reg.modelo,
+            'total', reg.total
+        );
         v_total_usuario := v_total_usuario + reg.total;
     END LOOP;
 
-    -- Imprime o último subtotal e total geral
+    -- Adiciona o último usuário
     IF v_usuario_atual IS NOT NULL THEN
-        RAISE NOTICE 'Subtotal do usuário %: %', v_usuario_atual, v_total_usuario;
+        v_json_result = v_json_result || jsonb_build_object(
+            'usuario', v_usuario_atual,
+            'subtotal', v_total_usuario,
+            'detalhes', v_current_array
+        );
         v_total_geral := v_total_geral + v_total_usuario;
     END IF;
 
-    RAISE NOTICE 'Total geral: %', v_total_geral;
+    -- Retorna o resultado completo como JSON formatado
+    RETURN jsonb_pretty(
+        jsonb_build_object(
+            'relatorio_motos', v_json_result,
+            'total_geral', v_total_geral
+        )
+    );
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        RAISE NOTICE 'Nenhum dado encontrado.';
+        RETURN '{"erro": "Nenhum dado encontrado"}';
     WHEN OTHERS THEN
-        RAISE NOTICE 'Erro desconhecido: %', SQLERRM;
+        RETURN '{"erro": "Erro desconhecido: ' || SQLERRM || '"}';
 END;
 $$;
 
--- execução procedimento 2
-CALL sp_somatorio_manual_adaptado();
+-- Testar a função
+SELECT fn_somatorio_manual_json();

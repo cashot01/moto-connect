@@ -17,4 +17,7 @@ public interface MotoRepository extends JpaRepository<Moto, Long> {
     // Usando consulta nativa para chamar a função
     @Query(value = "SELECT fn_join_json()", nativeQuery = true)
     String executarProcedimentoJson();
+
+    @Query(value = "SELECT fn_somatorio_manual_json()", nativeQuery = true)
+    String executarFuncaoSomatorioJson();
 }

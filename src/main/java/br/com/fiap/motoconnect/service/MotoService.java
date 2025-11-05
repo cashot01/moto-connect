@@ -35,4 +35,8 @@ public class MotoService {
     public String executarProcedimentoJson() {
         return motoRepository.executarProcedimentoJson();
     }
+
+    public String executarFuncaoSomatorioJson() {
+        return motoRepository.executarFuncaoSomatorioJson();
+    }
 }

@@ -1,6 +1,7 @@
 package br.com.fiap.motoconnect.repository;
 
 import br.com.fiap.motoconnect.model.Moto;
+import br.com.fiap.motoconnect.model.StatusMoto;
 import org.flywaydb.core.internal.jdbc.JdbcTemplate;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,8 @@ public interface MotoRepository extends JpaRepository<Moto, Long> {
 
     @EntityGraph(attributePaths = {"usuario", "rfid"})
     Optional<Moto> findById(Long id);
+
+    Long countByStatus(StatusMoto status);
 
     // Usando consulta nativa para chamar a função
     @Query(value = "SELECT fn_join_json()", nativeQuery = true)

@@ -1,5 +1,5 @@
-# Usa a imagem oficial do OpenJDK 17 
-FROM openjdk:17-jdk-slim
+# Usa a imagem oficial do OpenJDK 17 (versão mais estável)
+FROM openjdk:17
 
 # Define o diretório de trabalho
 WORKDIR /app

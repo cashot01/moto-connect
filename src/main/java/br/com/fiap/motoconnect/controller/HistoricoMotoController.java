@@ -16,13 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class HistoricoMotoController {
 
     private final HistoricoMotoService historicoMotoService;
-    private final MotoService motoService;
-    private final UsuarioService usuarioService;
+    private final HistoricoFormHelper formHelper;
 
     public HistoricoMotoController(HistoricoMotoService historicoMotoService, MotoService motoService, UsuarioService usuarioService) {
         this.historicoMotoService = historicoMotoService;
-        this.motoService = motoService;
-        this.usuarioService = usuarioService;
+        this.formHelper = new HistoricoFormHelper(motoService, usuarioService);
     }
 
     @GetMapping
@@ -34,16 +32,14 @@ public class HistoricoMotoController {
     @GetMapping("/novo")
     public String novoHistorico(Model model) {
         model.addAttribute("historicoMoto", new HistoricoMoto());
-        model.addAttribute("motos", motoService.listarTodas());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
+        formHelper.addFormAttributes(model);
         return "historico/form";
     }
 
     @PostMapping
     public String salvarHistorico(@Valid @ModelAttribute HistoricoMoto historicoMoto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            model.addAttribute("motos", motoService.listarTodas());
-            model.addAttribute("usuarios", usuarioService.listarTodos());
+            formHelper.addFormAttributes(model);
             return "historico/form";
         }
         historicoMotoService.salvar(historicoMoto);
@@ -54,8 +50,7 @@ public class HistoricoMotoController {
     @GetMapping("/{id}/editar")
     public String editarHistorico(@PathVariable Long id, Model model) {
         historicoMotoService.buscarPorId(id).ifPresent(historicoMoto -> model.addAttribute("historicoMoto", historicoMoto));
-        model.addAttribute("motos", motoService.listarTodas());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
+        formHelper.addFormAttributes(model);
         return "historico/form";
     }
 

@@ -52,7 +52,7 @@
                             <td th:text="${rfid.latitude}"></td>
                             <td th:text="${rfid.longitude}"></td>
                             <td>
-                                <a th:href="@{/rfid/editar(id=${id})}" class="btn btn-warning btn-sm me-2">
+                                <a th:href="@{/rfid/{id}/editar(id=${rfid.id})}" class="btn btn-warning btn-sm me-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <form th:action="@{/rfid/{id}(id=${rfid.id})}" th:method="delete" style="display: inline;">

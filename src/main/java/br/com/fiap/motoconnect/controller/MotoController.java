@@ -18,13 +18,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MotoController {
 
     private final MotoService motoService;
-    private final UsuarioService usuarioService;
-    private final RfidService rfidService;
+    private final MotoFormHelper formHelper;
 
     public MotoController(MotoService motoService, UsuarioService usuarioService, RfidService rfidService) {
         this.motoService = motoService;
-        this.usuarioService = usuarioService;
-        this.rfidService = rfidService;
+        this.formHelper = new MotoFormHelper(usuarioService, rfidService);
     }
 
     @GetMapping
@@ -36,23 +34,17 @@ public class MotoController {
     @GetMapping("/nova")
     public String novaMoto(Model model) {
         model.addAttribute("moto", new Moto());
-        model.addAttribute("modelos", ModeloMoto.values());
-        model.addAttribute("status", StatusMoto.values());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
-        model.addAttribute("rfids", rfidService.listarTodos());
+        formHelper.addFormAttributes(model);
         return "motos/form";
     }
 
     @PostMapping
     public String salvarMoto(@Valid @ModelAttribute Moto moto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            model.addAttribute("modelos", ModeloMoto.values());
-            model.addAttribute("status", StatusMoto.values());
-            model.addAttribute("usuarios", usuarioService.listarTodos());
-            model.addAttribute("rfids", rfidService.listarTodos());
+            formHelper.addFormAttributes(model);
             return "motos/form";
         }
-        
+
         motoService.salvar(moto);
         redirectAttributes.addFlashAttribute("sucesso", "Moto cadastrada com sucesso!");
         return "redirect:/motos";
@@ -67,10 +59,7 @@ public class MotoController {
     @GetMapping("/{id}/editar")
     public String editarMoto(@PathVariable Long id, Model model) {
         model.addAttribute("moto", motoService.buscarPorId(id));
-        model.addAttribute("modelos", ModeloMoto.values());
-        model.addAttribute("status", StatusMoto.values());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
-        model.addAttribute("rfids", rfidService.listarTodos());
+        formHelper.addFormAttributes(model);
         return "motos/form";
     }
 

@@ -17,4 +17,4 @@ RUN ./gradlew build --no-daemon
 EXPOSE 8080
 
 # Comando para iniciar a aplicação
-CMD ["java", "-jar", "build/libs/*.jar"]
+CMD ["java", "-jar", "build/libs/moto-connect-0.0.1-SNAPSHOT.jar"]

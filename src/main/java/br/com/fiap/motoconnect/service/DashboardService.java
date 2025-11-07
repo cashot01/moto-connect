@@ -20,6 +20,10 @@ public class DashboardService {
         return motoRepository.count();
     }
 
+    public Long getTotalMotosNaoIniciado() {
+        return motoRepository.countByStatus(StatusMoto.NAO_INICIADO);
+    }
+
     public Long getTotalMotosManutencao() {
         return motoRepository.countByStatus(StatusMoto.MANUTENCAO);
     }

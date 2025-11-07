@@ -36,6 +36,15 @@
             <div class="card text-center">
                 <div class="card-body">
                     <i class="fas fa-wrench card-icon text-warning"></i>
+                    <h3 class="card-title" th:text="${totalNaoIniciado}">0</h3>
+                    <p class="card-text" th:text="#{motorcycle.status.notStarted}">Não Iniciada</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fas fa-wrench card-icon text-warning"></i>
                     <h3 class="card-title" th:text="${totalManutencao}">0</h3>
                     <p class="card-text" th:text="#{motorcycle.status.maintenance}">Em Manutenção</p>
                 </div>

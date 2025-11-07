@@ -17,6 +17,7 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         model.addAttribute("totalMotos", dashboardService.getTotalMotos());
+        model.addAttribute("totalNaoIniciado", dashboardService.getTotalMotosNaoIniciado());
         model.addAttribute("totalManutencao", dashboardService.getTotalMotosManutencao());
         model.addAttribute("totalRevisadas", dashboardService.getTotalMotosRevisadas());
         model.addAttribute("totalRfids", dashboardService.getTotalRfids());

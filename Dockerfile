@@ -1,20 +1,20 @@
-# Usa a imagem oficial do OpenJDK 17 (versão mais estável)
-FROM openjdk:17
-
-# Define o diretório de trabalho
+# Etapa 1: build
+FROM gradle:8.10-jdk17 AS builder
 WORKDIR /app
 
-# Copia o build.gradle e settings.gradle primeiro (para aproveitar cache)
-COPY build.gradle settings.gradle ./
+COPY . .
 
-# Copia os arquivos de source
-COPY src ./src
+RUN gradle bootJar --no-daemon
 
-# Executa o build do Gradle
-RUN ./gradlew build --no-daemon
+# Etapa 2: imagem final
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
 
-# Expõe a porta padrão do Spring Boot
+# Copia o jar gerado
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Porta exposta (Render detecta automaticamente)
 EXPOSE 8080
 
-# Comando para iniciar a aplicação
-CMD ["java", "-jar", "build/libs/*.jar"]
+# Executa a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]

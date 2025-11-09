@@ -31,7 +31,14 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/perfil" th:text="#{profile}"></a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/login" th:text="#{logout}"></a></li>
+                            <li>
+                                <!-- Form para logout correto -->
+                                <form th:action="@{/logout}" method="post" style="display: inline;">
+                                    <button type="submit" class="dropdown-item btn btn-link" style="border: none; background: none; text-align: left; width: 100%;">
+                                        <span th:text="#{logout}">Sair</span>
+                                    </button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>

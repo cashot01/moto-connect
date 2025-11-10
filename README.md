@@ -240,10 +240,13 @@ O projeto utiliza Flyway para gerenciar migrações do banco de dados. As migra�
 
 ## Credenciais de Acesso
 
-| Perfil | E-mail | Senha |
-|--------|--------|-------|
-| ADMIN | cauan.passos@motoconnect.com | admin1234 |
-| USER | mateus.souza@motoconnect.com | senha123 |
+ | Perfil | E-mail                                                              | Senha     |
+| ------ | ------------------------------------------------------------------- | --------- |
+| ADMIN  | cauan.passos@motoconnect.com | admin1234 |
+| ADMIN  | mateus.souza@motoconnect.com | senha123 |
+| ADMIN  | lucas.fialho@motoconnect.com | password987 |
+| USER | arthur.bento@motoconnect.com | bento2025 |
+| USER | maria.clara@motoconnect.com | clara1235 |
 
 ## Fluxo de Dados Recomendado
 

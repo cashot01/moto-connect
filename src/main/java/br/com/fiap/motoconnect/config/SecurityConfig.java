@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .exceptionHandling(exception -> exception
-                        .accessDeniedPage("/acesso-negado") //  Página personalizada para 403
+                        .accessDeniedPage("/acesso-negado")
                 );
         return http.build();
     }

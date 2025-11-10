@@ -20,16 +20,13 @@ public class PerfilController {
 
     @GetMapping
     public String visualizarPerfil(Authentication authentication, Model model) {
-        // Obtém o email do usuário logado
         String email = authentication.getName();
 
-        // Busca o usuário pelo email
         Usuario usuario = usuarioService.buscarPorEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        // Adiciona o usuário ao modelo
         model.addAttribute("usuario", usuario);
 
-        return "perfil"; // Retorna o template Thymeleaf "perfil.html"
+        return "perfil";
     }
 }

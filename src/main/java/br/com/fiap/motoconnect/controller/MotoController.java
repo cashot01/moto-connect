@@ -50,12 +50,6 @@ public class MotoController {
         return "redirect:/motos";
     }
 
-    @GetMapping("/{id}")
-    public String visualizarMoto(@PathVariable Long id, Model model) {
-        model.addAttribute("moto", motoService.buscarPorId(id));
-        return "motos/detalhes";
-    }
-
     @GetMapping("/{id}/editar")
     public String editarMoto(@PathVariable Long id, Model model) {
         model.addAttribute("moto", motoService.buscarPorId(id));
